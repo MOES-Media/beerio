@@ -6,6 +6,7 @@ import { StoreModule } from '@ngrx/store';
 import { beerReducer } from './store/reducers/beer.reducer';
 import { RouterModule } from '@angular/router';
 import { beerRoutes } from './beer.routes';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 
@@ -16,6 +17,7 @@ import { beerRoutes } from './beer.routes';
   ],
   imports: [
     CommonModule,
+    SharedModule,
     StoreModule.forFeature('beerFeature', {
       beer: beerReducer
     }),
