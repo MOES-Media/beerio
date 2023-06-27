@@ -1,0 +1,70 @@
+# This "input" configures a global authorization rule to enable public access to
+# all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
+input AMPLIFY {
+  globalAuthRule: AuthRule = { allow: public }
+} # FOR TESTING ONLY!
+type Labels {
+  icon: String!
+  medium: String!
+  large: String!
+}
+
+type Beer @model {
+  id: ID!
+
+  name: String!
+  description: String
+
+  glass: Glass @hasOne
+  brewStyle: BrewStyle @hasOne
+  availability: Availability @hasOne
+  srm: Srm @hasOne
+
+  labels: Labels
+
+  abv: Float
+  ibu: Float
+  originalGravity: Float
+
+  isOrganic: Boolean
+  isRetired: Boolean
+}
+
+type Glass @model {
+  id: ID!
+  name: String!
+}
+
+type BrewStyle @model {
+  id: ID!
+  name: String!
+  category: Category @belongsTo
+  ibuMin: Float
+  ibuMax: Float
+  abvMin: Float
+  abvMax: Float
+  srmMin: Float
+  srmMax: Float
+  ogMinx: Float
+  ogMax: Float
+  fgMin: Float
+  fgMax: Float
+}
+
+type Category @model {
+  id: ID!
+  name: String!
+  brewStyles: [BrewStyle] @hasMany
+}
+
+type Availability @model {
+  id: ID!
+  name: String!
+  description: String
+}
+
+type Srm @model {
+  id: ID!
+  name: String!
+  hex: String!
+}

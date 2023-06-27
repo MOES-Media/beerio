@@ -1,0 +1,26 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-beerio-dev-194737-authRole",
+      "UnauthRoleArn": "arn:aws:iam::024618479346:role/amplify-beerio-dev-194737-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::024618479346:role/amplify-beerio-dev-194737-authRole",
+      "Region": "eu-west-3",
+      "DeploymentBucketName": "amplify-beerio-dev-194737-deployment",
+      "UnauthRoleName": "amplify-beerio-dev-194737-unauthRole",
+      "StackName": "amplify-beerio-dev-194737",
+      "StackId": "arn:aws:cloudformation:eu-west-3:024618479346:stack/amplify-beerio-dev-194737/0bad27d0-11ee-11ee-bb72-0a90121f502e",
+      "AmplifyAppId": "dvzkrxjjz7bmi"
+    },
+    "categories": {
+      "auth": {
+        "beerioe6588aa1": {}
+      },
+      "storage": {
+        "beerLabels": {}
+      },
+      "api": {
+        "beerio": {}
+      }
+    }
+  }
+}

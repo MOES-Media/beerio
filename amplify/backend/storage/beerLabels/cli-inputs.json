@@ -1,0 +1,16 @@
+{
+  "resourceName": "beerLabels",
+  "policyUUID": "29acd2df",
+  "bucketName": "beer-labels",
+  "storageAccess": "authAndGuest",
+  "guestAccess": [
+    "READ"
+  ],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}
