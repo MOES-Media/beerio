@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Constants } from 'src/app/core/constants';
 
 @Component({
   selector: 'app-list',
@@ -6,6 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./list.component.css']
 })
 export class ListComponent {
+  imageBaseUrl = Constants.BEER_LABELS_S3
   page = 1;
   onBeerItemClicked = (event: any) => console.log(event)
 
