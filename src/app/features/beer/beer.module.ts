@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import { beerRoutes } from './beer.routes';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { BeerOverviewComponent } from './components/beer-overview/beer-overview.component';
+import { InfiniteScrollModule } from "ngx-infinite-scroll";
 
 
 
@@ -23,7 +24,8 @@ import { BeerOverviewComponent } from './components/beer-overview/beer-overview.
     StoreModule.forFeature('beerFeature', {
       beer: beerReducer
     }),
-    RouterModule.forChild(beerRoutes)
+    RouterModule.forChild(beerRoutes),
+    InfiniteScrollModule
   ]
 })
 export class BeerModule { }

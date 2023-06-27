@@ -1,4 +1,6 @@
-<div class="m-auto grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1  gap-4 px-4 py-6">
+<app-loader></app-loader>
+<div class="m-auto grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1  gap-4 px-4 py-6" infinite-scroll
+    [infiniteScrollDistance]="2" [infiniteScrollThrottle]="1000" (scrolled)="onScroll()">
     <app-beer-list-item [name]="'007 Pale'"
         [imageSource]="'https://beer-labels194737-dev.s3.eu-west-3.amazonaws.com/large/007pale.png'"
         [style]="'American-Style Pale Ale'" [abv]="6" (onItemClick)="onBeerItemClicked($event)"></app-beer-list-item>
