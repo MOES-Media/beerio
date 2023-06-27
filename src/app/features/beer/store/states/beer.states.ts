@@ -11,3 +11,7 @@ export const initialBeerState = {
     isPending: false,
     currentPage: 1
 }
+
+export interface BeerFeatureState {
+    beerFeature: BeerState
+}

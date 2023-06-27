@@ -26,6 +26,11 @@ export const beerReducer = (
                 isPending: false,
                 content: (action as FetchBeerListSuccess).payload
             }
+        case BeerActionTypes.SET_NEXT_BEERS_PAGE:
+            return {
+                ...state,
+                currentPage: state.currentPage + 1
+            }
         default:
             return state;
     }

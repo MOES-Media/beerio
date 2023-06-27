@@ -21,9 +21,7 @@ import { InfiniteScrollModule } from "ngx-infinite-scroll";
   imports: [
     CommonModule,
     SharedModule,
-    StoreModule.forFeature('beerFeature', {
-      beer: beerReducer
-    }),
+    StoreModule.forFeature('beerFeature', beerReducer),
     RouterModule.forChild(beerRoutes),
     InfiniteScrollModule
   ]
