@@ -2,7 +2,7 @@ import { Action } from "@ngrx/store";
 import { BeerState, initialBeerState } from "../states/beer.states";
 import { BeerActionTypes, FetchBeerListError, FetchBeerListPending, FetchBeerListSuccess } from "../actions/beer.actions";
 
-export const BeerReducer = (
+export const beerReducer = (
     state: BeerState = initialBeerState,
     action: Action
 ) => {
