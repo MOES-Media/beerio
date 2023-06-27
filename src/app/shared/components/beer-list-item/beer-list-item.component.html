@@ -1,16 +1,16 @@
-<div class="w-full rounded overflow-hidden shadow-lg hover:bg-gray-100 p-2 hover:cursor-pointer"
+<div class="w-full rounded overflow-hidden shadow-lg hover:bg-slate-500 p-2 hover:cursor-pointer bg-slate-700"
     (click)="emitOnItemClicked()">
     <img class="w-full " src="{{ imageSource }}" alt="beer label of {{ name }}">
-    <div class="px-6 py-4">
-        <h3 class="font-bold text-xl mb-2 uppercase">{{ name }}</h3>
+    <div class="px-2 py-4">
+        <h3 class="font-bold text-xl mb-2 uppercase text-gray-400">{{ name }}</h3>
         <div class="flex">
             <div class="w-3/4">
-                <h4 class="font-bold text-sm mb-2 text-gray-500 mb-0">Style</h4>
-                <p class="font-bold">{{ style }}</p>
+                <h4 class="font-bold text-sm mb-2 text-gray-400 mb-0">Style</h4>
+                <p class="font-bold text-white">{{ style }}</p>
             </div>
             <div class="w-1/4">
-                <h4 class="font-bold text-sm mb-2 text-gray-500 mb-0">ABV</h4>
-                <p class="font-bold">{{ abv }}</p>
+                <h4 class="font-bold text-sm mb-2 text-gray-400 mb-0">ABV</h4>
+                <p class="font-bold text-white">{{ abv }}</p>
             </div>
         </div>
     </div>

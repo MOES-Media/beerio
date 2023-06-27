@@ -7,13 +7,15 @@ import { beerReducer } from './store/reducers/beer.reducer';
 import { RouterModule } from '@angular/router';
 import { beerRoutes } from './beer.routes';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { BeerOverviewComponent } from './components/beer-overview/beer-overview.component';
 
 
 
 @NgModule({
   declarations: [
     ListComponent,
-    DetailComponent
+    DetailComponent,
+    BeerOverviewComponent
   ],
   imports: [
     CommonModule,
