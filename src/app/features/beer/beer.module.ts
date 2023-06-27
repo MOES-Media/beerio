@@ -4,6 +4,8 @@ import { ListComponent } from './pages/list/list.component';
 import { DetailComponent } from './pages/detail/detail.component';
 import { StoreModule } from '@ngrx/store';
 import { beerReducer } from './store/reducers/beer.reducer';
+import { RouterModule } from '@angular/router';
+import { beerRoutes } from './beer.routes';
 
 
 
@@ -16,7 +18,8 @@ import { beerReducer } from './store/reducers/beer.reducer';
     CommonModule,
     StoreModule.forFeature('beerFeature', {
       beer: beerReducer
-    })
+    }),
+    RouterModule.forChild(beerRoutes)
   ]
 })
 export class BeerModule { }
