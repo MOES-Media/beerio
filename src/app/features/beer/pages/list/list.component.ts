@@ -3,34 +3,42 @@ import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { Constants } from 'src/app/core/constants';
 import { BeerFeatureState } from '../../store/states/beer.states';
-import { SetNextBeersPage } from '../../store/actions/beer.actions';
+import {
+  FetchBeerListAction,
+  SetNextBeersPage,
+} from '../../store/actions/beer.actions';
 
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.css']
+  styleUrls: ['./list.component.css'],
 })
 export class ListComponent {
-  imageBaseUrl = Constants.BEER_LABELS_S3
+  imageBaseUrl = Constants.BEER_LABELS_S3;
   page$: Observable<number>;
-  subscriptions: Array<Subscription> = []
+  isPending$: Observable<boolean>;
+  subscriptions: Array<Subscription> = [];
 
-  constructor(private store: Store<BeerFeatureState>) { }
+  constructor(private store: Store<BeerFeatureState>) {}
 
   ngOnInit(): void {
-    this.page$ = this.store.select((store) => store.beerFeature.currentPage)
-    this.subscriptions.push(this.page$.subscribe((page) => console.log(page)))
+    this.page$ = this.store.select((store) => store.beerFeature.currentPage);
+    this.isPending$ = this.store.select((store) => store.beerFeature.isPending);
+    this.subscriptions.push(
+      this.page$.subscribe((page) => {
+        console.log(page);
+        this.store.dispatch(new FetchBeerListAction());
+      })
+    );
   }
 
   ngOnDestroy(): void {
-    this.subscriptions.forEach(sub => sub.unsubscribe())
+    this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
 
-  onBeerItemClicked = (event: any) => console.log(event)
+  onBeerItemClicked = (event: any) => console.log(event);
 
   onScroll = () => {
-    console.log("hit the thing...")
-    this.store.dispatch(new SetNextBeersPage())
-  }
-
+    this.store.dispatch(new SetNextBeersPage());
+  };
 }

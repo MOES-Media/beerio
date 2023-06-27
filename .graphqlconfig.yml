@@ -1,0 +1,18 @@
+projects:
+  beerio:
+    schemaPath: amplify/backend/api/beerio/build/schema.graphql
+    includes:
+      - src/graphql/**/*.graphql
+    excludes:
+      - ./amplify/**
+    extensions:
+      amplify:
+        codeGenTarget: angular
+        generatedFileName: src/app/core/api/api.service.ts
+        docsFilePath: src/graphql
+        region: eu-west-3
+        apiId: null
+        maxDepth: 2
+extensions:
+  amplify:
+    version: 3

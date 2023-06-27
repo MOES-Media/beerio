@@ -9,7 +9,7 @@ type Labels {
   large: String!
 }
 
-type Beer @model {
+type Beer @model(mutations: null, subscriptions: null) {
   id: ID!
 
   name: String!
@@ -30,12 +30,12 @@ type Beer @model {
   isRetired: Boolean
 }
 
-type Glass @model {
+type Glass @model(mutations: null, subscriptions: null) {
   id: ID!
   name: String!
 }
 
-type BrewStyle @model {
+type BrewStyle @model(mutations: null, subscriptions: null) {
   id: ID!
   name: String!
   category: Category @belongsTo
@@ -51,19 +51,19 @@ type BrewStyle @model {
   fgMax: Float
 }
 
-type Category @model {
+type Category @model(mutations: null, subscriptions: null) {
   id: ID!
   name: String!
   brewStyles: [BrewStyle] @hasMany
 }
 
-type Availability @model {
+type Availability @model(mutations: null, subscriptions: null) {
   id: ID!
   name: String!
   description: String
 }
 
-type Srm @model {
+type Srm @model(mutations: null, subscriptions: null) {
   id: ID!
   name: String!
   hex: String!

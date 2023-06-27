@@ -27,3 +27,10 @@ export interface Beer {
     isOrganic: boolean;
     isRetired: boolean;
 }
+
+export interface BeerOverviewItem {
+    id: string;
+    name: string;
+    abv: number;
+    brewStyle: string
+}

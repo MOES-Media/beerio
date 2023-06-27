@@ -1,0 +1,22 @@
+query GetBeerOverviewItems(
+  $filter: ModelBeerFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listBeers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      name
+      abv
+      brewStyle {
+        name
+      }
+      labels {
+        large
+      }
+    }
+    nextToken
+    startedAt
+    __typename
+  }
+}

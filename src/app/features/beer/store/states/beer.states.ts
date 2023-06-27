@@ -5,11 +5,13 @@ export interface BeerState {
     currentPage: number;
     error?: Error,
     content?: Array<Beer> 
+    nextToken?: string | null
 }
 
 export const initialBeerState = {
     isPending: false,
-    currentPage: 1
+    currentPage: 1,
+    nextToken: null
 }
 
 export interface BeerFeatureState {

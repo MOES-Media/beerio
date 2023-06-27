@@ -1,0 +1,518 @@
+# this is an auto generated file. This will be overwritten
+
+query GetBeer($id: ID!) {
+  getBeer(id: $id) {
+    id
+    name
+    description
+    glass {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    brewStyle {
+      id
+      name
+      ibuMin
+      ibuMax
+      abvMin
+      abvMax
+      srmMin
+      srmMax
+      ogMinx
+      ogMax
+      fgMin
+      fgMax
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      categoryBrewStylesId
+      __typename
+    }
+    availability {
+      id
+      name
+      description
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    srm {
+      id
+      name
+      hex
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    labels {
+      icon
+      medium
+      large
+      __typename
+    }
+    abv
+    ibu
+    originalGravity
+    isOrganic
+    isRetired
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    beerGlassId
+    beerBrewStyleId
+    beerAvailabilityId
+    beerSrmId
+    __typename
+  }
+}
+
+query ListBeers(
+  $filter: ModelBeerFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listBeers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      name
+      description
+      abv
+      ibu
+      originalGravity
+      isOrganic
+      isRetired
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      beerGlassId
+      beerBrewStyleId
+      beerAvailabilityId
+      beerSrmId
+      __typename
+    }
+    nextToken
+    startedAt
+    __typename
+  }
+}
+
+query SyncBeers(
+  $filter: ModelBeerFilterInput
+  $limit: Int
+  $nextToken: String
+  $lastSync: AWSTimestamp
+) {
+  syncBeers(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    lastSync: $lastSync
+  ) {
+    items {
+      id
+      name
+      description
+      abv
+      ibu
+      originalGravity
+      isOrganic
+      isRetired
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      beerGlassId
+      beerBrewStyleId
+      beerAvailabilityId
+      beerSrmId
+      __typename
+    }
+    nextToken
+    startedAt
+    __typename
+  }
+}
+
+query GetGlass($id: ID!) {
+  getGlass(id: $id) {
+    id
+    name
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    __typename
+  }
+}
+
+query ListGlasses(
+  $filter: ModelGlassFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listGlasses(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    nextToken
+    startedAt
+    __typename
+  }
+}
+
+query SyncGlasses(
+  $filter: ModelGlassFilterInput
+  $limit: Int
+  $nextToken: String
+  $lastSync: AWSTimestamp
+) {
+  syncGlasses(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    lastSync: $lastSync
+  ) {
+    items {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    nextToken
+    startedAt
+    __typename
+  }
+}
+
+query GetBrewStyle($id: ID!) {
+  getBrewStyle(id: $id) {
+    id
+    name
+    category {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    ibuMin
+    ibuMax
+    abvMin
+    abvMax
+    srmMin
+    srmMax
+    ogMinx
+    ogMax
+    fgMin
+    fgMax
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    categoryBrewStylesId
+    __typename
+  }
+}
+
+query ListBrewStyles(
+  $filter: ModelBrewStyleFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listBrewStyles(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      name
+      ibuMin
+      ibuMax
+      abvMin
+      abvMax
+      srmMin
+      srmMax
+      ogMinx
+      ogMax
+      fgMin
+      fgMax
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      categoryBrewStylesId
+      __typename
+    }
+    nextToken
+    startedAt
+    __typename
+  }
+}
+
+query SyncBrewStyles(
+  $filter: ModelBrewStyleFilterInput
+  $limit: Int
+  $nextToken: String
+  $lastSync: AWSTimestamp
+) {
+  syncBrewStyles(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    lastSync: $lastSync
+  ) {
+    items {
+      id
+      name
+      ibuMin
+      ibuMax
+      abvMin
+      abvMax
+      srmMin
+      srmMax
+      ogMinx
+      ogMax
+      fgMin
+      fgMax
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      categoryBrewStylesId
+      __typename
+    }
+    nextToken
+    startedAt
+    __typename
+  }
+}
+
+query GetCategory($id: ID!) {
+  getCategory(id: $id) {
+    id
+    name
+    brewStyles {
+      nextToken
+      startedAt
+      __typename
+    }
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    __typename
+  }
+}
+
+query ListCategories(
+  $filter: ModelCategoryFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listCategories(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    nextToken
+    startedAt
+    __typename
+  }
+}
+
+query SyncCategories(
+  $filter: ModelCategoryFilterInput
+  $limit: Int
+  $nextToken: String
+  $lastSync: AWSTimestamp
+) {
+  syncCategories(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    lastSync: $lastSync
+  ) {
+    items {
+      id
+      name
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    nextToken
+    startedAt
+    __typename
+  }
+}
+
+query GetAvailability($id: ID!) {
+  getAvailability(id: $id) {
+    id
+    name
+    description
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    __typename
+  }
+}
+
+query ListAvailabilities(
+  $filter: ModelAvailabilityFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listAvailabilities(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      name
+      description
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    nextToken
+    startedAt
+    __typename
+  }
+}
+
+query SyncAvailabilities(
+  $filter: ModelAvailabilityFilterInput
+  $limit: Int
+  $nextToken: String
+  $lastSync: AWSTimestamp
+) {
+  syncAvailabilities(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    lastSync: $lastSync
+  ) {
+    items {
+      id
+      name
+      description
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    nextToken
+    startedAt
+    __typename
+  }
+}
+
+query GetSrm($id: ID!) {
+  getSrm(id: $id) {
+    id
+    name
+    hex
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    __typename
+  }
+}
+
+query ListSrms($filter: ModelSrmFilterInput, $limit: Int, $nextToken: String) {
+  listSrms(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      name
+      hex
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    nextToken
+    startedAt
+    __typename
+  }
+}
+
+query SyncSrms(
+  $filter: ModelSrmFilterInput
+  $limit: Int
+  $nextToken: String
+  $lastSync: AWSTimestamp
+) {
+  syncSrms(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    lastSync: $lastSync
+  ) {
+    items {
+      id
+      name
+      hex
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+    nextToken
+    startedAt
+    __typename
+  }
+}
