@@ -2,23 +2,29 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ListComponent } from './pages/list/list.component';
 import { DetailComponent } from './pages/detail/detail.component';
-import { StoreModule } from '@ngrx/store';
-import { beerReducer } from './store/reducers/beer.reducer';
+import { ActionReducerMap, StoreModule, combineReducers } from '@ngrx/store';
+import { beerOverviewReducer } from './store/reducers/beer-overview.reducer';
 import { RouterModule } from '@angular/router';
 import { beerRoutes } from './beer.routes';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { BeerOverviewComponent } from './components/beer-overview/beer-overview.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { EffectsModule } from '@ngrx/effects';
-import { BeerEffects } from './store/effects/beer.effects';
+import { BeerQueryEffects } from './store/effects/beer.query.effects';
+import { beerDetailReducer } from './store/reducers/beer-detail.reducer';
+import { BeerState } from './store/states/beer.states';
+
+const reducers: ActionReducerMap<BeerState> = {
+  overview: beerOverviewReducer,
+  detail: beerDetailReducer,
+};
 
 @NgModule({
-  declarations: [ListComponent, DetailComponent, BeerOverviewComponent],
+  declarations: [ListComponent, DetailComponent],
   imports: [
     CommonModule,
     SharedModule,
-    StoreModule.forFeature('beerFeature', beerReducer),
-    EffectsModule.forFeature([BeerEffects]),
+    StoreModule.forFeature<BeerState>('beerFeature', reducers),
+    EffectsModule.forFeature([BeerQueryEffects]),
     RouterModule.forChild(beerRoutes),
     InfiniteScrollModule,
   ],

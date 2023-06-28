@@ -20,3 +20,45 @@ query GetBeerOverviewItems(
     __typename
   }
 }
+
+query GetBeerDetails($id: ID!) {
+  getBeer(id: $id) {
+    name
+    description
+    glass {
+      name
+    }
+    brewStyle {
+      name
+      ibuMin
+      ibuMax
+      abvMin
+      abvMax
+      srmMin
+      srmMax
+      ogMinx
+      ogMax
+      fgMin
+      fgMax
+      category {
+        name
+      }
+      __typename
+    }
+    availability {
+      name
+      description
+    }
+    labels {
+      icon
+      medium
+      large
+      __typename
+    }
+    abv
+    ibu
+    originalGravity
+    isOrganic
+    isRetired
+  }
+}

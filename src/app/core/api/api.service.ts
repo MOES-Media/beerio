@@ -321,6 +321,50 @@ export type GetBeerOverviewItemsQuery = {
   startedAt?: number | null;
 };
 
+export type GetBeerDetailsQuery = {
+  __typename: "Beer";
+  name: string;
+  description?: string | null;
+  glass?: {
+    __typename: "Glass";
+    name: string;
+  } | null;
+  brewStyle?: {
+    __typename: "BrewStyle";
+    name: string;
+    ibuMin?: number | null;
+    ibuMax?: number | null;
+    abvMin?: number | null;
+    abvMax?: number | null;
+    srmMin?: number | null;
+    srmMax?: number | null;
+    ogMinx?: number | null;
+    ogMax?: number | null;
+    fgMin?: number | null;
+    fgMax?: number | null;
+    category?: {
+      __typename: "Category";
+      name: string;
+    } | null;
+  } | null;
+  availability?: {
+    __typename: "Availability";
+    name: string;
+    description?: string | null;
+  } | null;
+  labels?: {
+    __typename: "Labels";
+    icon: string;
+    medium: string;
+    large: string;
+  } | null;
+  abv?: number | null;
+  ibu?: number | null;
+  originalGravity?: number | null;
+  isOrganic?: boolean | null;
+  isRetired?: boolean | null;
+};
+
 export type GetBeerQuery = {
   __typename: "Beer";
   id: string;
@@ -766,6 +810,60 @@ export class APIService {
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
     return <GetBeerOverviewItemsQuery>response.data.listBeers;
+  }
+  async GetBeerDetails(id: string): Promise<GetBeerDetailsQuery> {
+    const statement = `query GetBeerDetails($id: ID!) {
+        getBeer(id: $id) {
+          __typename
+          name
+          description
+          glass {
+            __typename
+            name
+          }
+          brewStyle {
+            __typename
+            name
+            ibuMin
+            ibuMax
+            abvMin
+            abvMax
+            srmMin
+            srmMax
+            ogMinx
+            ogMax
+            fgMin
+            fgMax
+            category {
+              __typename
+              name
+            }
+          }
+          availability {
+            __typename
+            name
+            description
+          }
+          labels {
+            __typename
+            icon
+            medium
+            large
+          }
+          abv
+          ibu
+          originalGravity
+          isOrganic
+          isRetired
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      id
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetBeerDetailsQuery>response.data.getBeer;
   }
   async GetBeer(id: string): Promise<GetBeerQuery> {
     const statement = `query GetBeer($id: ID!) {

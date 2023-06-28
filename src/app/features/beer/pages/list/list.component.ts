@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { Constants } from 'src/app/core/constants';
-import { BeerFeatureState } from '../../store/states/beer.states';
+import { BeerFeatureState, BeerState } from '../../store/states/beer.states';
 import {
   FetchBeerListAction,
-  SetNextBeersPage,
+  SetNextBeersPageAction,
 } from '../../store/actions/beer.actions';
 import { BeerOverviewItem } from '../../store/models/beer.model';
 import { Router } from '@angular/router';
@@ -25,9 +25,13 @@ export class ListComponent {
   constructor(private store: Store<BeerFeatureState>, private router: Router) {}
 
   ngOnInit(): void {
-    this.page$ = this.store.select((store) => store.beerFeature.currentPage);
-    this.isPending$ = this.store.select((store) => store.beerFeature.isPending);
-    this.beerOverviewItems$ = this.store.select((store) => store.beerFeature.overviewItems);
+    this.page$ = this.store.select((store) => store.beerFeature.overview.currentPage);
+    this.isPending$ = this.store.select((store) => {
+      console.log(store)
+      return store.beerFeature.overview.isPending;});
+    this.beerOverviewItems$ = this.store.select(
+      (store) => store.beerFeature.overview.overviewItems
+    );
     this.subscriptions.push(
       this.page$.subscribe((page) => {
         // TODO JN use page for analitics with amplify
@@ -41,9 +45,10 @@ export class ListComponent {
     this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
 
-  onBeerItemClicked = (event: string) => this.router.navigate([`/beer/${event}`]);
+  onBeerItemClicked = (event: string) =>
+    this.router.navigate([`/beer/${event}`]);
 
   onScroll = () => {
-    this.store.dispatch(new SetNextBeersPage());
+    this.store.dispatch(new SetNextBeersPageAction());
   };
 }

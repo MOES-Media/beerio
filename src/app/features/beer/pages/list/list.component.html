@@ -9,8 +9,8 @@
     *ngFor="let overviewItem of beerOverviewItems$ | async"
     [name]="overviewItem.name"
     [imageSource]="imageBaseUrl + overviewItem.imageSource"
-    [style]="'American-Style Pale Ale'"
-    [abv]="6"
+    [style]="overviewItem.brewStyle"
+    [abv]="overviewItem.abv"
     [id]="overviewItem.id"
     (onItemClick)="onBeerItemClicked($event)"
   ></app-beer-list-item>

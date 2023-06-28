@@ -1,29 +1,27 @@
 import { Action } from '@ngrx/store';
-import { BeerState, initialBeerState } from '../states/beer.states';
+import { BeerOverviewState, initialBeerOverviewState } from '../states/beer.states';
 import {
   BeerActionTypes,
-  FetchBeerListError,
-  FetchBeerListPending,
-  FetchBeerListSuccess,
+  FetchBeerListErrorAction,
+  FetchBeerListSuccessAction,
 } from '../actions/beer.actions';
 
-export const beerReducer = (
-  state: BeerState = initialBeerState,
+export const beerOverviewReducer = (
+  state: BeerOverviewState = initialBeerOverviewState,
   action: Action
-) => {
+): BeerOverviewState => {
   switch (action.type) {
-    case BeerActionTypes.FETCH_BEERS_LIST_PENDING:
+    case BeerActionTypes.FETCH_BEERS_LIST:
       return {
         ...state,
         isPending: true,
         error: undefined,
-        content: undefined,
       };
     case BeerActionTypes.FETCH_BEERS_LIST_ERROR:
       return {
         ...state,
         isPending: false,
-        error: (action as FetchBeerListError).payload,
+        error: (action as FetchBeerListErrorAction).payload,
       };
     case BeerActionTypes.FETCH_BEERS_LIST_SUCCESS:
       return {
@@ -31,9 +29,9 @@ export const beerReducer = (
         isPending: false,
         overviewItems: [
           ...state.overviewItems,
-          ...(action as FetchBeerListSuccess).payload.data,
+          ...(action as FetchBeerListSuccessAction).payload.data,
         ],
-        nextToken: (action as FetchBeerListSuccess).payload.nextToken,
+        nextToken: (action as FetchBeerListSuccessAction).payload.nextToken,
       };
     case BeerActionTypes.SET_NEXT_BEERS_PAGE:
       return {
