@@ -8,6 +8,7 @@ import {
   SetNextBeersPage,
 } from '../../store/actions/beer.actions';
 import { BeerOverviewItem } from '../../store/models/beer.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list',
@@ -21,7 +22,7 @@ export class ListComponent {
   beerOverviewItems$: Observable<Array<BeerOverviewItem>>;
   subscriptions: Array<Subscription> = [];
 
-  constructor(private store: Store<BeerFeatureState>) {}
+  constructor(private store: Store<BeerFeatureState>, private router: Router) {}
 
   ngOnInit(): void {
     this.page$ = this.store.select((store) => store.beerFeature.currentPage);
@@ -29,6 +30,7 @@ export class ListComponent {
     this.beerOverviewItems$ = this.store.select((store) => store.beerFeature.overviewItems);
     this.subscriptions.push(
       this.page$.subscribe((page) => {
+        // TODO JN use page for analitics with amplify
         console.log(page);
         this.store.dispatch(new FetchBeerListAction());
       })
@@ -39,7 +41,7 @@ export class ListComponent {
     this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
 
-  onBeerItemClicked = (event: any) => console.log(event);
+  onBeerItemClicked = (event: string) => this.router.navigate([`/beer/${event}`]);
 
   onScroll = () => {
     this.store.dispatch(new SetNextBeersPage());

@@ -7,16 +7,14 @@ import {
 import {
   catchError,
   map,
-  mergeMap,
   switchMap,
   withLatestFrom,
 } from 'rxjs/operators';
 import { APIService } from 'src/app/core/api/api.service';
 import { from, of } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { Beer } from '../models/beer.model';
 import { BeerFeatureState } from '../states/beer.states';
-import { Store, select } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 
 @Injectable()
 export class BeerEffects {
