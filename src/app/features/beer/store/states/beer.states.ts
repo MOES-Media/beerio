@@ -1,17 +1,18 @@
-import { Beer } from "../models/beer.model";
+import { Beer, BeerOverviewItem } from "../models/beer.model";
 
 export interface BeerState {
     isPending: boolean;
     currentPage: number;
     error?: Error,
     content?: Array<Beer> 
-    nextToken?: string | null
+    overviewItems: Array<BeerOverviewItem>
+    nextToken?: string 
 }
 
-export const initialBeerState = {
+export const initialBeerState: BeerState = {
     isPending: false,
     currentPage: 1,
-    nextToken: null
+    overviewItems: [] as Array<BeerOverviewItem>
 }
 
 export interface BeerFeatureState {

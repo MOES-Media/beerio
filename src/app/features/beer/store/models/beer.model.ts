@@ -32,5 +32,6 @@ export interface BeerOverviewItem {
     id: string;
     name: string;
     abv: number;
-    brewStyle: string
+    brewStyle: string;
+    imageSource: string;
 }

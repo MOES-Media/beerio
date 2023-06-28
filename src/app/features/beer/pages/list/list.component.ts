@@ -7,6 +7,7 @@ import {
   FetchBeerListAction,
   SetNextBeersPage,
 } from '../../store/actions/beer.actions';
+import { BeerOverviewItem } from '../../store/models/beer.model';
 
 @Component({
   selector: 'app-list',
@@ -17,6 +18,7 @@ export class ListComponent {
   imageBaseUrl = Constants.BEER_LABELS_S3;
   page$: Observable<number>;
   isPending$: Observable<boolean>;
+  beerOverviewItems$: Observable<Array<BeerOverviewItem>>;
   subscriptions: Array<Subscription> = [];
 
   constructor(private store: Store<BeerFeatureState>) {}
@@ -24,6 +26,7 @@ export class ListComponent {
   ngOnInit(): void {
     this.page$ = this.store.select((store) => store.beerFeature.currentPage);
     this.isPending$ = this.store.select((store) => store.beerFeature.isPending);
+    this.beerOverviewItems$ = this.store.select((store) => store.beerFeature.overviewItems);
     this.subscriptions.push(
       this.page$.subscribe((page) => {
         console.log(page);

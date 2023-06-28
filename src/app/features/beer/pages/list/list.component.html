@@ -1,28 +1,17 @@
-<div class="m-auto grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1  gap-4 px-4 py-6" infinite-scroll
-    [infiniteScrollDistance]="2" [infiniteScrollThrottle]="1000" (scrolled)="onScroll()">
-    <app-beer-list-item [name]="'007 Pale'" [imageSource]="imageBaseUrl + 'large/007pale.png'"
-        [style]="'American-Style Pale Ale'" [abv]="6" (onItemClick)="onBeerItemClicked($event)"></app-beer-list-item>
-    <app-beer-list-item [name]="'007 Pale'" [imageSource]="imageBaseUrl + 'large/007pale.png' "
-        [style]="'American-Style Pale Ale'" [abv]="6"></app-beer-list-item>
-    <app-beer-list-item [name]="'007 Pale'" [imageSource]="imageBaseUrl + 'large/007pale.png' "
-        [style]="'American-Style Pale Ale'" [abv]="6"></app-beer-list-item>
-    <app-beer-list-item [name]="'007 Pale'" [imageSource]="imageBaseUrl + 'large/007pale.png' "
-        [style]="'American-Style Pale Ale'" [abv]="6"></app-beer-list-item>
-    <app-beer-list-item [name]="'007 Pale'" [imageSource]="imageBaseUrl + 'large/007pale.png' "
-        [style]="'American-Style Pale Ale'" [abv]="6"></app-beer-list-item>
-    <app-beer-list-item [name]="'007 Pale'" [imageSource]="imageBaseUrl + 'large/007pale.png' "
-        [style]="'American-Style Pale Ale'" [abv]="6"></app-beer-list-item>
-    <app-beer-list-item [name]="'007 Pale'" [imageSource]="imageBaseUrl + 'large/007pale.png' "
-        [style]="'American-Style Pale Ale'" [abv]="6"></app-beer-list-item>
-    <app-beer-list-item [name]="'007 Pale'" [imageSource]="imageBaseUrl + 'large/007pale.png' "
-        [style]="'American-Style Pale Ale'" [abv]="6"></app-beer-list-item>
-    <app-beer-list-item [name]="'007 Pale'" [imageSource]="imageBaseUrl + 'large/007pale.png' "
-        [style]="'American-Style Pale Ale'" [abv]="6"></app-beer-list-item>
-    <app-beer-list-item [name]="'007 Pale'" [imageSource]="imageBaseUrl + 'large/007pale.png' "
-        [style]="'American-Style Pale Ale'" [abv]="6"></app-beer-list-item>
-    <app-beer-list-item [name]="'007 Pale'" [imageSource]="imageBaseUrl + 'large/007pale.png' "
-        [style]="'American-Style Pale Ale'" [abv]="6"></app-beer-list-item>
-    <app-beer-list-item [name]="'007 Pale'" [imageSource]="imageBaseUrl + 'large/007pale.png' "
-        [style]="'American-Style Pale Ale'" [abv]="6"></app-beer-list-item>
+<div
+  class="m-auto grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-4 px-4 py-6"
+  infinite-scroll
+  [infiniteScrollDistance]="2"
+  [infiniteScrollThrottle]="1000"
+  (scrolled)="onScroll()"
+>
+  <app-beer-list-item
+    *ngFor="let overviewItem of beerOverviewItems$ | async"
+    [name]="overviewItem.name"
+    [imageSource]="imageBaseUrl + overviewItem.imageSource"
+    [style]="'American-Style Pale Ale'"
+    [abv]="6"
+    (onItemClick)="onBeerItemClicked($event)"
+  ></app-beer-list-item>
 </div>
-<app-loader *ngIf="isPending$ | async "></app-loader>
+<app-loader *ngIf="isPending$ | async"></app-loader>
