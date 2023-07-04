@@ -9,7 +9,7 @@
     "framework": "angular",
     "config": {
       "SourceDir": "src",
-      "DistributionDir": "dist",
+      "DistributionDir": "dist/beerio",
       "BuildCommand": "ng build",
       "StartCommand": "ng serve"
     }
