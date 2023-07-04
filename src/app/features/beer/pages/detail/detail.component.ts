@@ -7,6 +7,10 @@ import { Analytics } from 'aws-amplify';
 import { Observable, Subscription } from 'rxjs';
 import { BeerDetail } from '../../store/models/beer.model';
 import { Constants } from 'src/app/core/constants';
+import {
+  isBeerDetailPending,
+  selectBeerDetail,
+} from '../../store/selectors/beer-detail.selectors';
 
 @Component({
   selector: 'app-detail',
@@ -16,8 +20,7 @@ import { Constants } from 'src/app/core/constants';
 export class DetailComponent {
   imageBaseUrl = Constants.BEER_LABELS_S3;
   isPending$: Observable<boolean>;
-  beerDetail?: BeerDetail;
-  subscriptions: Array<Subscription> = [];
+  beerDetail$: Observable<BeerDetail | undefined>;
 
   constructor(
     private store: Store<BeerFeatureState>,
@@ -26,25 +29,14 @@ export class DetailComponent {
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('beerId')!;
-    this.isPending$ = this.store.select(
-      (store) => store.beerFeature.detail.isPending
-    );
+    this.isPending$ = this.store.select(isBeerDetailPending);
     this.store.dispatch(new FetchBeerDetailAction(id));
     Analytics.record({
       name: 'view-beer-detail',
       attributes: { id },
     });
-    this.subscriptions.push(
-      this.store
-        .select((store) => store.beerFeature.detail.data)
-        .subscribe((detail) => {
-          console.log(detail)
-          this.beerDetail = detail
-        })
-    );
+
+    this.beerDetail$ = this.store.select(selectBeerDetail)
   }
 
-  ngOnDestroy() {
-    this.subscriptions.forEach((sub) => sub.unsubscribe());
-  }
 }

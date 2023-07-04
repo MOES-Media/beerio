@@ -1,6 +1,6 @@
 <app-loader *ngIf="isPending$ | async"></app-loader>
 <app-beer-detail
-  *ngIf="beerDetail !== undefined"
+  *ngIf="beerDetail$ | async as beerDetail"
   [name]="beerDetail.name"
   [labelImageSrc]="imageBaseUrl + beerDetail.labels.large"
   [brewStyle]="beerDetail.brewStyle!.name"

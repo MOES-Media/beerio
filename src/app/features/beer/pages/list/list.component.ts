@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subject, Subscription, map, takeUntil } from 'rxjs';
 import { Constants } from 'src/app/core/constants';
 import { BeerFeatureState, BeerState } from '../../store/states/beer.states';
 import {
@@ -10,6 +10,11 @@ import {
 import { BeerOverviewItem } from '../../store/models/beer.model';
 import { Router } from '@angular/router';
 import { Analytics } from 'aws-amplify';
+import {
+  isBeerOverviewPending,
+  selectBeerOverviewItems,
+  selectCurrentPage,
+} from '../../store/selectors/beer-overview.selectors';
 
 @Component({
   selector: 'app-list',
@@ -17,37 +22,34 @@ import { Analytics } from 'aws-amplify';
   styleUrls: ['./list.component.css'],
 })
 export class ListComponent {
+  private destroy$ = new Subject<void>();
   imageBaseUrl = Constants.BEER_LABELS_S3;
-  page$: Observable<number>;
   isPending$: Observable<boolean>;
   beerOverviewItems$: Observable<Array<BeerOverviewItem>>;
-  subscriptions: Array<Subscription> = [];
 
   constructor(private store: Store<BeerFeatureState>, private router: Router) {}
 
   ngOnInit(): void {
-    this.page$ = this.store.select(
-      (store) => store.beerFeature.overview.currentPage
-    );
-    this.isPending$ = this.store.select(
-      (store) => store.beerFeature.overview.isPending
-    );
-    this.beerOverviewItems$ = this.store.select(
-      (store) => store.beerFeature.overview.overviewItems
-    );
-    this.subscriptions.push(
-      this.page$.subscribe((page) => {
-        Analytics.record({
-          name: 'beer-overview-next-page',
-          attributes: { page: page.toString() },
-        });
-        this.store.dispatch(new FetchBeerListAction());
-      })
-    );
+    this.store
+      .select(selectCurrentPage)
+      .pipe(
+        takeUntil(this.destroy$),
+        map((page) => {
+          Analytics.record({
+            name: 'beer-overview-next-page',
+            attributes: { page: page.toString() },
+          });
+          this.store.dispatch(new FetchBeerListAction());
+        })
+      )
+      .subscribe();
+    this.isPending$ = this.store.select(isBeerOverviewPending);
+    this.beerOverviewItems$ = this.store.select(selectBeerOverviewItems);
   }
 
   ngOnDestroy(): void {
-    this.subscriptions.forEach((sub) => sub.unsubscribe());
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   onBeerItemClicked = (event: string) =>
