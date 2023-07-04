@@ -17,7 +17,6 @@ query GetBeerOverviewItems(
     }
     nextToken
     startedAt
-    __typename
   }
 }
 
@@ -43,7 +42,6 @@ query GetBeerDetails($id: ID!) {
       category {
         name
       }
-      __typename
     }
     availability {
       name
@@ -53,7 +51,6 @@ query GetBeerDetails($id: ID!) {
       icon
       medium
       large
-      __typename
     }
     abv
     ibu

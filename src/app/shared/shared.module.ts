@@ -4,18 +4,22 @@ import { BeerListItemComponent } from './components/beer-list-item/beer-list-ite
 import { LoaderComponent } from './components/loader/loader.component';
 import { PopOverComponent } from './components/pop-over/pop-over.component';
 import { DescriptorComponent } from './components/descriptor/descriptor.component';
-
+import { BeerDetailComponent } from './components/beer-detail/beer-detail.component';
 
 @NgModule({
   declarations: [
     BeerListItemComponent,
     LoaderComponent,
     PopOverComponent,
-    DescriptorComponent
+    DescriptorComponent,
+    BeerDetailComponent,
   ],
-  imports: [
-    CommonModule
+  imports: [CommonModule],
+  exports: [
+    BeerListItemComponent,
+    LoaderComponent,
+    PopOverComponent,
+    BeerDetailComponent,
   ],
-  exports: [BeerListItemComponent, LoaderComponent, PopOverComponent]
 })
-export class SharedModule { }
+export class SharedModule {}

@@ -1,4 +1,13 @@
 <app-loader *ngIf="isPending$ | async"></app-loader>
-<div *ngIf="beerDetail !== undefined" class="text-white">
-  {{ beerDetail.name }}
-</div>
+<app-beer-detail
+  *ngIf="beerDetail !== undefined"
+  [name]="beerDetail.name"
+  [labelImageSrc]="imageBaseUrl + beerDetail.labels.large"
+  [brewStyle]="beerDetail.brewStyle!.name"
+  [abv]="beerDetail.abv!"
+  [description]="beerDetail.description"
+  [glassware]="beerDetail.glass?.name"
+  [availability]="beerDetail.availability?.description"
+  [ibu]="beerDetail.ibu"
+  [originalGravity]="beerDetail.originalGravity"
+></app-beer-detail>
