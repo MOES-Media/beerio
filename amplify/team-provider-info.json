@@ -23,6 +23,12 @@
       },
       "analytics": {
         "beerio": {}
+      },
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "dvzkrxjjz7bmi",
+          "type": "manual"
+        }
       }
     }
   }
