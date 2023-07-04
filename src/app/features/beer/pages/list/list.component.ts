@@ -9,6 +9,7 @@ import {
 } from '../../store/actions/beer.actions';
 import { BeerOverviewItem } from '../../store/models/beer.model';
 import { Router } from '@angular/router';
+import { Analytics } from 'aws-amplify';
 
 @Component({
   selector: 'app-list',
@@ -25,17 +26,21 @@ export class ListComponent {
   constructor(private store: Store<BeerFeatureState>, private router: Router) {}
 
   ngOnInit(): void {
-    this.page$ = this.store.select((store) => store.beerFeature.overview.currentPage);
-    this.isPending$ = this.store.select((store) => {
-      console.log(store)
-      return store.beerFeature.overview.isPending;});
+    this.page$ = this.store.select(
+      (store) => store.beerFeature.overview.currentPage
+    );
+    this.isPending$ = this.store.select(
+      (store) => store.beerFeature.overview.isPending
+    );
     this.beerOverviewItems$ = this.store.select(
       (store) => store.beerFeature.overview.overviewItems
     );
     this.subscriptions.push(
       this.page$.subscribe((page) => {
-        // TODO JN use page for analitics with amplify
-        console.log(page);
+        Analytics.record({
+          name: 'beer-overview-next-page',
+          attributes: { page: page.toString() },
+        });
         this.store.dispatch(new FetchBeerListAction());
       })
     );

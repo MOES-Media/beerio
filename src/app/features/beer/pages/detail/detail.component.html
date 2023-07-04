@@ -1,1 +1,4 @@
-<p>detail works!</p>
+<app-loader *ngIf="isPending$ | async"></app-loader>
+<div *ngIf="beerDetail !== undefined" class="text-white">
+  {{ beerDetail.name }}
+</div>

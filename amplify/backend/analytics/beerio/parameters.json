@@ -1,0 +1,21 @@
+{
+    "appName": "beerio",
+    "roleName": "pinpointLambdaRole9af1fbd6",
+    "cloudformationPolicyName": "cloudformationPolicy9af1fbd6",
+    "cloudWatchPolicyName": "cloudWatchPolicy9af1fbd6",
+    "pinpointPolicyName": "pinpointPolicy9af1fbd6",
+    "authPolicyName": "pinpoint_amplify_9af1fbd6",
+    "unauthPolicyName": "pinpoint_amplify_9af1fbd6",
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "authRoleArn": {
+        "Fn::GetAtt": [
+            "AuthRole",
+            "Arn"
+        ]
+    }
+}

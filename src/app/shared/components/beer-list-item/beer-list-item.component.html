@@ -7,15 +7,10 @@
     <h3 class="font-bold text-xl mb-2 uppercase text-gray-400">{{ name }}</h3>
     <div class="flex">
       <div class="w-3/4">
-        <h4 class="font-bold text-sm mb-2 text-gray-400 mb-0">Style</h4>
-        <p class="font-bold text-white truncate" [attr.data-popover-target]="id">
-          {{ style }}
-        </p>
-        <app-pop-over [body]="style" [popoverId]="id"></app-pop-over>
-        <div class="w-1/4">
-          <h4 class="font-bold text-sm mb-2 text-gray-400 mb-0">ABV</h4>
-          <p class="font-bold text-white">{{ abv }}</p>
-        </div>
+        <app-descriptor label="Style" [value]="style"></app-descriptor>
+      </div>
+      <div class="w-1/4">
+        <app-descriptor label="ABV" [value]="abv.toString()"></app-descriptor>
       </div>
     </div>
   </div>

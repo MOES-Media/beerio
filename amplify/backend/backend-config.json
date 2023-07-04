@@ -1,4 +1,10 @@
 {
+  "analytics": {
+    "beerio": {
+      "providerPlugin": "awscloudformation",
+      "service": "Pinpoint"
+    }
+  },
   "api": {
     "beerio": {
       "dependsOn": [],
